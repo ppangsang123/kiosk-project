@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>키오스크 연습실</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="키오스크 주문 연습">
+        <header class="app-header">
+          <div>
+            <p class="eyebrow">세대 공감 데이터 탐구</p>
+            <h1>키오스크 연습실</h1>
+          </div>
+          <div class="header-actions">
+            <button id="resetBtn" class="ghost" type="button">처음부터</button>
+            <button id="helpBtn" class="help" type="button">도움</button>
+          </div>
+        </header>
+
+        <div class="kiosk-device">
+          <div class="device-camera" aria-hidden="true"></div>
+
+          <section class="mission-card" aria-label="오늘의 주문 목표">
+            <span id="restaurantName">카페 키오스크</span>
+            <div id="missionText" class="mission-list">따뜻한 아메리카노 1잔, 보통 크기, 매장에서 마시기, 카드 결제</div>
+          </section>
+
+          <section class="kiosk" aria-live="polite">
+            <div class="kiosk-topbar">
+              <button class="home-chip" type="button" aria-label="홈">⌂</button>
+              <strong>Easy KIOSK</strong>
+              <span>LANG</span>
+            </div>
+
+            <div class="category-tabs" aria-label="메뉴 카테고리">
+              <span class="active">추천메뉴</span>
+              <span>세트/옵션</span>
+              <span>음료/사이드</span>
+              <span>결제</span>
+            </div>
+
+            <div class="screen-top">
+              <div>
+                <span id="stepBadge">1단계</span>
+                <h2 id="screenTitle">메뉴를 골라주세요</h2>
+              </div>
+              <p id="screenHint">위의 주문 목표를 보고 같은 메뉴를 선택합니다.</p>
+            </div>
+
+            <div class="screen-body">
+              <div id="menuView" class="menu-grid"></div>
+              <div id="optionView" class="option-view hidden"></div>
+              <div id="cartView" class="cart-view hidden"></div>
+              <div id="payView" class="pay-view hidden"></div>
+              <div id="doneView" class="done-view hidden"></div>
+            </div>
+
+            <nav class="bottom-actions">
+              <button id="backBtn" class="secondary" type="button">이전</button>
+              <div class="kiosk-paybar">
+                <span>수량 <b id="paybarCount">0</b></span>
+                <span>결제금액 <b id="paybarAmount">0</b></span>
+                <button id="paybarBtn" type="button">결제하기</button>
+              </div>
+              <button id="nextBtn" class="primary" type="button">다음</button>
+            </nav>
+          </section>
+
+          <div class="device-hardware" aria-hidden="true">
+            <div>
+              <span>카드를 넣어주세요</span>
+              <i></i>
+            </div>
+            <div>
+              <span>영수증</span>
+              <i></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side-panel" aria-label="연습 안내와 기록">
+        <section class="guide">
+          <h2>현재 안내</h2>
+          <p id="guideText">식당 유형을 고른 뒤, 제시된 주문 목표와 같은 항목을 차례대로 선택합니다.</p>
+          <div class="progress">
+            <span id="progressText">진행률 0%</span>
+            <i id="progressBar"></i>
+          </div>
+        </section>
+
+        <section class="mode-box">
+          <h2>연습 설정</h2>
+          <label>
+            식당 유형
+            <select id="restaurantSelect">
+              <option value="cafe">카페</option>
+              <option value="burger">햄버거 가게</option>
+              <option value="chicken">치킨 가게</option>
+            </select>
+          </label>
+          <label>
+            주문 난이도
+            <select id="orderModeSelect">
+              <option value="single">1개 주문</option>
+              <option value="multi">여러 개 주문</option>
+            </select>
+          </label>
+          <label>
+            참여자 구분
+            <select id="groupSelect">
+              <option value="어르신">어르신</option>
+              <option value="학생">학생</option>
+              <option value="기타">기타</option>
+            </select>
+          </label>
+          <label>
+            연습 회차
+            <select id="roundSelect">
+              <option value="교육 전">교육 전</option>
+              <option value="교육 직후">교육 직후</option>
+              <option value="재방문">재방문</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="stats">
+          <h2>오늘의 연습 기록</h2>
+          <div class="stat-grid">
+            <article>
+              <span>완료</span>
+              <strong id="completeCount">0</strong>
+            </article>
+            <article>
+              <span>정답률</span>
+              <strong id="successRate">0%</strong>
+            </article>
+            <article>
+              <span>평균 시간</span>
+              <strong id="avgTime">0초</strong>
+            </article>
+            <article>
+              <span>도움 사용</span>
+              <strong id="helpCount">0</strong>
+            </article>
+          </div>
+          <button id="downloadBtn" class="wide-btn" type="button">CSV 저장</button>
+          <button id="clearLogBtn" class="wide-btn danger" type="button">기록 비우기</button>
+        </section>
+      </aside>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
